@@ -18,7 +18,7 @@ ENTITY TIMER2 IS
         CS,
         IO_WRITE : IN    STD_LOGIC;
         IO_DATA  : INOUT STD_LOGIC_VECTOR(15 DOWNTO 0);
-		  TIMER2_CTRL_EN : IN  STD_LOGIC  -- New input for direction control
+        TIMER2_CTRL_EN : IN  STD_LOGIC  -- New input for direction control
     );
 END TIMER2;
 
@@ -26,7 +26,7 @@ ARCHITECTURE a OF TIMER2 IS
     SIGNAL COUNT     : STD_LOGIC_VECTOR(15 DOWNTO 0);
     SIGNAL IO_COUNT  : STD_LOGIC_VECTOR(15 DOWNTO 0); -- a stable copy of the count for the IO
     SIGNAL OUT_EN    : STD_LOGIC;
-	 SIGNAL COUNT_UP  : STD_LOGIC := '1';  -- Default to counting up (so 1 is up and anything else is down)
+    SIGNAL COUNT_UP  : STD_LOGIC := '1';  -- Default to counting up (so 1 is up and anything else is down)
 
     BEGIN
 
