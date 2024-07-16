@@ -17,8 +17,8 @@ ENTITY IO_DECODER IS
     TIMER_EN      : OUT STD_LOGIC;
     HEX0_EN       : OUT STD_LOGIC;
     HEX1_EN       : OUT STD_LOGIC;
-	 TIMER2_EN		: OUT STD_LOGIC;
-	 TIMER2_CTRL_EN : OUT STD_LOGIC  -- New signal for controlling count direction
+    TIMER2_EN		: OUT STD_LOGIC;
+    TIMER2_CTRL_EN : OUT STD_LOGIC  -- New signal for controlling count direction
   );
 
 END ENTITY;
