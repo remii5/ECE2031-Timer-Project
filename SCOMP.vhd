@@ -21,13 +21,13 @@ entity SCOMP is
 		IO_WRITE  : out   std_logic;
 		IO_CYCLE  : out   std_logic;
 		IO_ADDR   : out   std_logic_vector(10 downto 0);
-		IO_DATA   : inout std_logic_vector(15 downto 0);
-		dbg_FETCH : out   std_logic;
-		dbg_AC    : out   std_logic_vector(15 downto 0);
-		dbg_PC    : out   std_logic_vector(10 downto 0);
-		dbg_MA    : out   std_logic_vector(10 downto 0);
-		dbg_MD    : out   std_logic_vector(15 downto 0);
-		dbg_IR    : out   std_logic_vector(15 downto 0)
+		IO_DATA   : inout std_logic_vector(15 downto 0)
+		-- dbg_FETCH : out   std_logic;
+		-- dbg_AC    : out   std_logic_vector(15 downto 0);
+		-- dbg_PC    : out   std_logic_vector(10 downto 0);
+		-- dbg_MA    : out   std_logic_vector(10 downto 0);
+		-- dbg_MD    : out   std_logic_vector(15 downto 0);
+		-- dbg_IR    : out   std_logic_vector(15 downto 0)
 	);
 end SCOMP;
 
@@ -63,7 +63,7 @@ architecture a of SCOMP is
 	signal int_ack       : std_logic_vector( 3 downto 0); -- interrupt acknowledge
 	signal PC_saved      : std_logic_vector(10 downto 0); -- saced PC while inside ISR
 	signal AC_saved      : std_logic_vector(15 downto 0); -- saced AC while inside ISR
-	
+
 
 begin
 	-- use altsyncram component for unified program and data memory
@@ -150,7 +150,7 @@ begin
 					GIE       <= '1';           -- Not currently in ISR
 					IIE       <= "0000";        -- Disable all interrupts
 					int_ack   <= "1111";        -- Clear any pending interrupts
-					int_req_sync <= "0000";     -- 
+					int_req_sync <= "0000";     --
 
 				when fetch =>
 					IO_WRITE_int <= '0';   -- lower IO_WRITE after an out
@@ -363,20 +363,20 @@ begin
 
 				when others =>
 					state <= init;          -- if an invalid state is reached, reset
-					
+
 			end case;
-			
+
 			int_req_sync <= int_req;  -- register async interrupt requests to SCOMP's clock
-			
+
 		end if;
 	end process;
 
-	dbg_FETCH <= '1' when state = fetch else '0';
-	dbg_AC  <= AC;
-	dbg_PC  <= PC;
-	dbg_MA  <= next_mem_addr;
-	dbg_MD  <= mem_data;
-	dbg_IR  <= IR;
+	-- dbg_FETCH <= '1' when state = fetch else '0';
+	-- dbg_AC  <= AC;
+	-- dbg_PC  <= PC;
+	-- dbg_MA  <= next_mem_addr;
+	-- dbg_MD  <= mem_data;
+	-- dbg_IR  <= IR;
 
 	-- This process monitors the external interrupt pins, setting
 	-- some flags if a rising edge is detected, and clearing flags

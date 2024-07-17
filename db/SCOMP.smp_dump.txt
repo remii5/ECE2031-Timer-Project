@@ -8,7 +8,7 @@ dps_current_state.PHASE_DONE_LOW_3 0 0 1 0 0 1
 dps_current_state.PHASE_DONE_LOW_4 0 1 0 0 0 1 
 dps_current_state.PHASE_DONE_LOW_0 1 0 0 0 0 1 
 
-State Machine - |SCOMP_System|SCOMP:inst|state
+State Machine - |SCOMP_System|SCOMP:inst5|state
 Name state.ex_out2 state.ex_out state.ex_in2 state.ex_in state.ex_shift state.ex_xor state.ex_or state.ex_and state.ex_reti state.ex_return state.ex_call state.ex_jpos state.ex_jzero state.ex_jneg state.ex_jump state.ex_sub state.ex_addi state.ex_add state.ex_loadi state.ex_istore2 state.ex_istore state.ex_iload state.ex_store2 state.ex_store state.ex_load state.ex_nop state.decode state.fetch state.init 
 state.init 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
 state.fetch 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 

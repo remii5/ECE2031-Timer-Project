@@ -45,8 +45,16 @@ BEGIN
 
     PROCESS (CLOCK, RESETN, CS, IO_WRITE)
     BEGIN
-        IF (RESETN = '0' OR (CS AND IO_WRITE) = '1') THEN
+        -- If reset or IN instruction, then reset clock
+        -- IF (RESETN = '0' OR (CS AND IO_WRITE) = '1') THEN
+
+        -- If reset, then reset clock
+        IF (RESETN = '0') THEN
             COUNT <= x"0000";
+        -- If IN, then COUNT = IO_DATA
+        ELSIF ((CS AND IO_WRITE) = '1') THEN
+            COUNT <= IO_DATA;
+        -- Else then count++
         ELSIF (rising_edge(CLOCK)) THEN
             COUNT <= COUNT + 1;
         END IF;

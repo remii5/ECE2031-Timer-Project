@@ -1,0 +1,26 @@
+WIDTH=16;
+DEPTH=2048;
+
+ADDRESS_RADIX=HEX;
+DATA_RADIX=HEX;
+
+CONTENT BEGIN
+0000: 080D; --     LOAD    ZERO
+0001: 9006; --     IN      Timer2
+0002: 9806; --     OUT     Timer2
+0003: 9804; --     OUT     Hex0
+0004: 200E; --     SUB     FIVE
+0005: 3002; --     JNEG    LOOP1
+0006: 080F; --     LOAD    SIXTEEN
+0007: 9006; --     IN      Timer2
+0008: 9806; --     OUT     Timer2
+0009: 9804; --     OUT     Hex0
+000A: 2010; --     SUB     TWENTY_ONE
+000B: 3008; --     JNEG    LOOP2
+000C: 2800; -- 	JUMP    0
+000D: 0000; -- ZERO:       DW  0
+000E: 0032; -- FIVE:       DW  50
+000F: 00A0; -- SIXTEEN:    DW  160
+0010: 00D2; -- TWENTY_ONE: DW  210
+[0011..07FF] : 0000; -- [empty memory]
+END;

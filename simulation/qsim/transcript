@@ -1,0 +1,148 @@
+# do SCOMP.do
+# ** Warning: (vlib-34) Library already exists at "work".
+# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 23:15:57 on Jul 16,2024
+# vcom -work work SCOMP.vho 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package VITAL_Timing
+# -- Loading package VITAL_Primitives
+# -- Loading package dffeas_pack
+# -- Loading package altera_primitives_components
+# -- Loading package altera_lnsim_components
+# -- Loading package cyclonev_atom_pack
+# -- Loading package cyclonev_components
+# -- Compiling entity SCOMP_System
+# -- Compiling architecture structure of SCOMP_System
+# End time: 23:15:57 on Jul 16,2024, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 23:15:57 on Jul 16,2024
+# vcom -work work Waveform.vwf.vht 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Compiling entity SCOMP_System_vhd_vec_tst
+# -- Compiling architecture SCOMP_System_arch of SCOMP_System_vhd_vec_tst
+# End time: 23:15:57 on Jul 16,2024, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vsim -novopt -c -t 1ps -L cyclonev -L altera -L altera_mf -L 220model -L sgate -L altera_lnsim work.SCOMP_System_vhd_vec_tst 
+# Start time: 23:15:58 on Jul 16,2024
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading work.scomp_system_vhd_vec_tst(scomp_system_arch)
+# Loading ieee.vital_timing(body)
+# Loading ieee.vital_primitives(body)
+# Loading altera.dffeas_pack
+# Loading altera.altera_primitives_components
+# Loading altera_lnsim.altera_lnsim_components
+# Loading cyclonev.cyclonev_atom_pack(body)
+# Loading cyclonev.cyclonev_components
+# Loading work.scomp_system(structure)
+# Loading altera.dffeas(vital_dffeas)
+# Loading cyclonev.cyclonev_lcell_comb(vital_lcell_comb)
+# Loading ieee.std_logic_arith(body)
+# Loading cyclonev.cyclonev_io_obuf(arch)
+# Loading cyclonev.cyclonev_io_ibuf(arch)
+# Loading cyclonev.cyclonev_pll_refclk_select(behavior)
+# Loading cyclonev.cyclonev_fractional_pll(behavior)
+# Loading sv_std.std
+# Loading altera_lnsim.altera_lnsim_functions
+# Loading altera_lnsim.generic_device_pll
+# Loading altera_lnsim.altera_generic_pll_functions
+# Loading altera_lnsim.generic_pll
+# Loading cyclonev.cyclonev_pll_reconfig(behavior)
+# Loading cyclonev.cyclonev_pll_output_counter(behavior)
+# Loading cyclonev.cyclonev_ram_block(block_arch)
+# Loading altera_lnsim.generic_m10k
+# Loading altera_lnsim.common_28nm_ram_block
+# Loading altera_lnsim.common_28nm_ram_register
+# Loading altera_lnsim.common_28nm_ram_pulse_generator
+# Loading cyclonev.cyclonev_jtag(behavior)
+# Loading altera_lnsim.altera_pll_reconfig_tasks
+# ** Warning: (vsim-3017) <protected>(<protected>): [TFMPC] - Too few port connections. Expected <protected>, found <protected>.
+#    Time: 0 ps  Iteration: 0  Protected: /scomp_system_vhd_vec_tst/i1/\inst1|pll_main_inst|altera_pll_i|cyclonev_pll|fpll_0|REFCLK_SELECT\/inst/<protected> File: nofile
+# ** Warning: (vsim-3722) <protected>(<protected>): [TFMPC] - Missing connection for port '<protected>'.
+# ** Warning: (vsim-3015) <protected>(<protected>): [PCDPC] - Port size (<protected>) does not match connection size (<protected>) for <protected>.<protected>
+#    Time: 0 ps  Iteration: 0  Protected: /scomp_system_vhd_vec_tst/i1/\inst1|pll_main_inst|altera_pll_i|cyclonev_pll|fpll_0|PLL_RECONFIG\/inst/<protected> File: nofile
+# ** Warning: Design size of 288971 statements exceeds ModelSim-Intel FPGA Starter Edition recommended capacity.
+# Expect performance to be adversely affected.
+# after#34
+# 
+# Warning: por to CB BFM is not connected, internal por is used.
+# 
+# Info: =================================================
+# Info:           Generic PLL Summary
+# Info: =================================================
+# Time scale of (scomp_system_vhd_vec_tst.i1.\inst1|pll_main_inst|altera_pll_i|cyclonev_pll|fpll_0|fpll\.inst.<protected>.<protected>.inst_pll_phase_0.no_need_to_gen) is  1ps /  1ps
+# Info: hierarchical_name = scomp_system_vhd_vec_tst.i1.\inst1|pll_main_inst|altera_pll_i|cyclonev_pll|fpll_0|fpll\.inst.<protected>.<protected>.inst_pll_phase_0.no_need_to_gen
+# Info: reference_clock_frequency = 50.0 mhz
+# Info: output_clock_frequency = 300.0 mhz
+# Info: phase_shift = 0 ps
+# Info: duty_cycle = 50
+# Info: sim_additional_refclk_cycles_to_lock = 0
+# Info: output_clock_high_period = 1666.666667
+# Info: output_clock_low_period = 1666.666667
+# Info: =================================================
+# Info:           Generic PLL Summary
+# Info: =================================================
+# Time scale of (scomp_system_vhd_vec_tst.i1.\inst1|pll_main_inst|altera_pll_i|cyclonev_pll|fpll_0|fpll\.inst.<protected>.<protected>.inst_pll_phase_1.no_need_to_gen) is  1ps /  1ps
+# Info: hierarchical_name = scomp_system_vhd_vec_tst.i1.\inst1|pll_main_inst|altera_pll_i|cyclonev_pll|fpll_0|fpll\.inst.<protected>.<protected>.inst_pll_phase_1.no_need_to_gen
+# Info: reference_clock_frequency = 50.0 mhz
+# Info: output_clock_frequency = 300.0 mhz
+# Info: phase_shift = 416 ps
+# Info: duty_cycle = 50
+# Info: sim_additional_refclk_cycles_to_lock = 0
+# Info: output_clock_high_period = 1666.666667
+# Info: output_clock_low_period = 1666.666667
+# Info: =================================================
+# Info:           Generic PLL Summary
+# Info: =================================================
+# Time scale of (scomp_system_vhd_vec_tst.i1.\inst1|pll_main_inst|altera_pll_i|cyclonev_pll|fpll_0|fpll\.inst.<protected>.<protected>.inst_pll_phase_2.no_need_to_gen) is  1ps /  1ps
+# Info: hierarchical_name = scomp_system_vhd_vec_tst.i1.\inst1|pll_main_inst|altera_pll_i|cyclonev_pll|fpll_0|fpll\.inst.<protected>.<protected>.inst_pll_phase_2.no_need_to_gen
+# Info: reference_clock_frequency = 50.0 mhz
+# Info: output_clock_frequency = 300.0 mhz
+# Info: phase_shift = 832 ps
+# Info: duty_cycle = 50
+# Info: sim_additional_refclk_cycles_to_lock = 0
+# Info: output_clock_high_period = 1666.666667
+# Info: output_clock_low_period = 1666.666667
+# Info: =================================================
+# Info:           Generic PLL Summary
+# Info: =================================================
+# Time scale of (scomp_system_vhd_vec_tst.i1.\inst1|pll_main_inst|altera_pll_i|cyclonev_pll|fpll_0|fpll\.inst.<protected>.<protected>.inst_pll_phase_3.no_need_to_gen) is  1ps /  1ps
+# Info: hierarchical_name = scomp_system_vhd_vec_tst.i1.\inst1|pll_main_inst|altera_pll_i|cyclonev_pll|fpll_0|fpll\.inst.<protected>.<protected>.inst_pll_phase_3.no_need_to_gen
+# Info: reference_clock_frequency = 50.0 mhz
+# Info: output_clock_frequency = 300.0 mhz
+# Info: phase_shift = 1248 ps
+# Info: duty_cycle = 50
+# Info: sim_additional_refclk_cycles_to_lock = 0
+# Info: output_clock_high_period = 1666.666667
+# Info: output_clock_low_period = 1666.666667
+# 
+# Warning: por to CB BFM is not connected, internal por is used.
+# 
+# Simulation time: 240790 ps
+# Simulation time: 240790 ps
+# Simulation time: 240790 ps
+# Simulation time: 240790 ps
+# Simulation time: 240790 ps
+# Simulation time: 240790 ps
+# Simulation time: 240790 ps
+# Simulation time: 240790 ps
+# Simulation time: 7088150 ps
+# Simulation time: 7088150 ps
+# Simulation time: 7088150 ps
+# Simulation time: 7088150 ps
+# Simulation time: 7088150 ps
+# Simulation time: 7088150 ps
+# Simulation time: 7088150 ps
+# Simulation time: 7088150 ps
+# Simulation time: 14148310 ps
+# Simulation time: 14148310 ps
+# Simulation time: 14148310 ps
+# Simulation time: 14148310 ps
+# Simulation time: 14148310 ps
+# Simulation time: 14148310 ps
