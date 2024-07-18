@@ -9,6 +9,7 @@ LIBRARY IEEE;
 LIBRARY LPM;
 
 USE IEEE.STD_LOGIC_1164.ALL;
+USE IEEE.NUMERIC_STD.ALL;
 USE IEEE.STD_LOGIC_ARITH.ALL;
 USE IEEE.STD_LOGIC_UNSIGNED.ALL;
 USE LPM.LPM_COMPONENTS.ALL;
@@ -53,6 +54,32 @@ ARCHITECTURE a OF TIMER_FREQ IS
     END COMPONENT;
 
 BEGIN
+
+    -- -- Use Intel LPM IP to create tristate drivers
+    -- IO_BUS: lpm_bustri
+    -- GENERIC MAP (
+    --     lpm_width => 16
+    -- )
+    -- PORT MAP (
+    --     data        => IO_COUNT,
+    --     enabledt    => OUT_EN,
+    --     tridata     => IO_DATA
+    -- );
+
+    -- Instantiate the lpm_divide component
+    div_inst: lpm_divide
+    GENERIC MAP (
+        lpm_widthd  => 16,
+        lpm_widthn  => 24
+    )
+    PORT MAP (
+        denom       => input_freq,
+        numer       => std_logic_vector(to_unsigned(half_freq, 24)),
+        quotient    => quotient,
+        remain      => remain
+    );
+
+    -- OUT_EN <= (CS AND NOT(IO_WRITE));
 
     PROCESS (CLOCK_12MHz, RESETN)
     BEGIN
