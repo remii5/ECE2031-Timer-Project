@@ -2,3 +2,4 @@
 
 Overall SCOMP_System BDF structure:
 
+!(SCOMP_SystemBDF.png)
