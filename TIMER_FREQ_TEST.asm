@@ -56,12 +56,12 @@ COUNT:
 100kHz:     DW  5
 
 ; Values
-HUNDRED     DW  100
+HUNDRED:    DW  100
 
 ; IO address constants
 Switches:   EQU 000
 LEDs:       EQU 001
-Timer:      EQU 002
+TIMER_ACC:  EQU 002
+TIMER_FREQ: EQU 003
 Hex0:       EQU 004
 Hex1:       EQU 005
-Timer2:     EQU 006
