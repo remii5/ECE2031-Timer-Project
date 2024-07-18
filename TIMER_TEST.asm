@@ -6,7 +6,7 @@
 ;           Else if ACC = POS, then count up
 ;           Else if ACC = NEG, then count down
 ; TIMER stores the counter and does the counting
-;       ACC = Set counter value
+;       ACC = Set Counter Value
 ; ----------------------------------------------------------
 ; Tests each clock frequencies and outputs to Hex Display
 ; Last updated on 7/18/2024
@@ -30,6 +30,29 @@ ORG 0
     LOADI   10
     OUT     TIMER
     LOADI   -2
+    OUT     TIMER_FREQ
+    CALL    COUNT_DOWN
+
+    ; ------------------------------------------
+
+    ; Stop timer and set counter = 0
+    LOADI   0
+    OUT     TIMER_FREQ
+    OUT     TIMER
+
+    ; Start timer with 2 Hz and count until 10
+    LOADI   10
+    OUT     TIMER_FREQ
+    CALL    COUNT_UP
+
+    ; Stop timer
+    LOADI   0
+    OUT     TIMER_FREQ
+
+    ; Set counter = 10 and start timer with -2 Hz
+    LOADI   10
+    OUT     TIMER
+    LOADI   -10
     OUT     TIMER_FREQ
     CALL    COUNT_DOWN
 
