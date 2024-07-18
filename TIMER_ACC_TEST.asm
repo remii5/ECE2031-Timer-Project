@@ -7,9 +7,9 @@ ORG 0
     ; --------------------
     ; Count from 0.0 to 5.0
     LOAD    ZERO
-    OUT     Timer2
+    OUT     TIMER_ACC
 LOOP1:
-    IN      Timer2
+    IN      TIMER_ACC
     OUT     Hex1
     SUB     FIVE
     JNEG    LOOP1
@@ -20,9 +20,9 @@ LOOP1:
     ; --------------------
     ; Count to 2.5 to 7.5
     LOAD    TWO_FIVE
-    OUT     Timer2
+    OUT     TIMER_ACC
 LOOP2:
-    IN      Timer2
+    IN      TIMER_ACC
     OUT     Hex0
     SUB     SEVEN_FIVE
     JNEG    LOOP2
