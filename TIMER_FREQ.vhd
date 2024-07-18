@@ -14,12 +14,14 @@ USE IEEE.STD_LOGIC_UNSIGNED.ALL;
 USE LPM.LPM_COMPONENTS.ALL;
 
 ENTITY TIMER_FREQ IS
-    PORT(
-    CLOCK_12MHz,
-    RESETN,
-    CS,
-    IO_WRITE : IN    STD_LOGIC;
-    IO_DATA  : INOUT STD_LOGIC_VECTOR(15 DOWNTO 0)
+    PORT (
+    CLOCK_12MHz     : IN STD_LOGIC;
+    RESETN          : IN STD_LOGIC;
+    CS              : IN STD_LOGIC;
+    IO_WRITE        : IN STD_LOGIC;
+    IO_DATA         : IN STD_LOGIC_VECTOR(15 DOWNTO 0);
+    NEG_FREQ        : OUT STD_LOGIC;
+    TIMER_CLOCK     : OUT STD_LOGIC
 );
 END TIMER_FREQ;
 
@@ -27,9 +29,6 @@ ARCHITECTURE a OF TIMER_FREQ IS
     CONSTANT clk_freq    : INTEGER := 12000000;
     CONSTANT half_freq   : INTEGER := clk_freq/2;
 
-    SIGNAL COUNT        : STD_LOGIC_VECTOR(15 DOWNTO 0);
-    SIGNAL IO_COUNT     : STD_LOGIC_VECTOR(15 DOWNTO 0); -- a stable copy of the count for the IO
-    SIGNAL OUT_EN       : STD_LOGIC;
     SIGNAL clock_int    : STD_LOGIC;
     SIGNAL clock_count  : STD_LOGIC_VECTOR(23 DOWNTO 0);
     SIGNAL input_freq   : STD_LOGIC_VECTOR(15 DOWNTO 0);
@@ -55,20 +54,6 @@ ARCHITECTURE a OF TIMER_FREQ IS
 
 BEGIN
 
-    -- Use Intel LPM IP to create tristate drivers
-    IO_BUS: lpm_bustri
-    GENERIC MAP (
-                    lpm_width => 16
-                )
-    PORT MAP (
-                 data     => IO_COUNT,
-                 enabledt => OUT_EN,
-                 tridata  => IO_DATA
-             );
-
-    -- IO data should be driven when SCOMP is requesting data
-    OUT_EN <= (CS AND NOT(IO_WRITE));
-
     PROCESS (CLOCK_12MHz, RESETN)
     BEGIN
         IF (RESETN = '0') THEN
@@ -89,7 +74,6 @@ BEGIN
     PROCESS (clock_int, RESETN, CS, IO_WRITE)
     BEGIN
         IF (RESETN = '0') THEN
-            COUNT <= x"0000";
             -- default clock freq = 10Hz
             input_freq <= x"000A";
             neg <= '0';
@@ -101,26 +85,10 @@ BEGIN
                 input_freq <= IO_DATA;
                 neg <= '0';
             END IF;
-        ELSIF (rising_edge(clock_int)) THEN
-            IF (neg = '1') THEN
-                COUNT <= COUNT - 1;
-            ELSE
-                COUNT <= COUNT + 1;
-            END IF;
         END IF;
     END PROCESS;
 
-    -- Use a latch to prevent IO_COUNT from changing while an IO operation is occuring.
-    -- Note that this is only safe because the clock used for this peripheral
-    -- is derived from the same clock used for SCOMP; they're not separate
-    -- clock domains.
-    PROCESS (CS, COUNT, IO_COUNT)
-    BEGIN
-        IF CS = '1' THEN
-            IO_COUNT <= IO_COUNT;
-        ELSE
-            IO_COUNT <= COUNT;
-        END IF;
-    END PROCESS;
+    TIMER_CLOCK <= clock_int;
+    NEG_FREQ <= neg;
 
 END a;
