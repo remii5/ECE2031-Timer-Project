@@ -1,12 +1,12 @@
 ; TIMER_TEST.asm
 ; ----------------------------------------------------------
-; TIMER_FREQ control the clock speed going to the clock
+; TIMER_FREQ controls the timer clock speed
 ;       ACC = Freq (Neg, Zero, Pos)
-;       If ACC = 0, then stop timer
-;       Else if ACC = POS, then count up
-;       Else if ACC = NEG, then count down
+;           If ACC = 0, then stop timer
+;           Else if ACC = POS, then count up
+;           Else if ACC = NEG, then count down
 ; TIMER stores the counter and does the counting
-;       ACC = Starting Value
+;       ACC = Set counter value
 ; ----------------------------------------------------------
 ; Tests each clock frequencies and outputs to Hex Display
 ; Last updated on 7/18/2024
