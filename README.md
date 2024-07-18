@@ -1,6 +1,6 @@
 # ECE 2031 Final Project
 
-### Functionality added so far
+### Functionality added so far:
 
 1. TIMER peripheral
     - Stores current counter value
@@ -8,12 +8,16 @@
 2. TIMER_FREQ peripheral
     - Provides user-specified timer speed in Hz
 
-### VHDL Organization
+### TIMER BDF Structure:
+
+![TIMER.png](https://github.com/ecuasonic/ECE2031-Timer-Project/blob/main/TIMER.png)
+
+### VHDL Organization:
 
 The TIMER and TIMER_FREQ are currently in separate vhdl files, but it is possible to merge them together into a single vhdl file, and have two Chip Select inputs to differ between the two.
 The peripherals are separated for now for debugging simplicity.
 
-### Example Assembly Code
+### Assembly Code Example:
 ```asm
 ORG 0
     ; Stop timer and set counter = 0
