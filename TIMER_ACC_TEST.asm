@@ -7,9 +7,9 @@ ORG 0
     ; --------------------
     ; Count from 0.0 to 5.0
     LOAD    ZERO
-    OUT     Timer2
+    OUT     TIMER_ACC
 LOOP1:
-    IN      Timer2
+    IN      TIMER_ACC
     OUT     Hex1
     SUB     FIVE
     JNEG    LOOP1
@@ -20,9 +20,9 @@ LOOP1:
     ; --------------------
     ; Count to 2.5 to 7.5
     LOAD    TWO_FIVE
-    OUT     Timer2
+    OUT     TIMER_ACC
 LOOP2:
-    IN      Timer2
+    IN      TIMER_ACC
     OUT     Hex0
     SUB     SEVEN_FIVE
     JNEG    LOOP2
@@ -43,7 +43,7 @@ SEVEN_FIVE: DW  75
 ; IO address constants
 Switches:   EQU 000
 LEDs:       EQU 001
-Timer:      EQU 002
+TIMER_ACC:  EQU 002
+TIMER_FREQ: EQU 003
 Hex0:       EQU 004
 Hex1:       EQU 005
-Timer2:     EQU 006

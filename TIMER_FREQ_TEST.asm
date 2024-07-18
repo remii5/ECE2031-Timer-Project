@@ -8,39 +8,39 @@ ORG 0
     ; --------------------
     ; Count to 100, Clock = 4Hz
     LOAD    4Hz
-    OUT     Timer2
+    OUT     TIMER_FREQ
     CALL    COUNT
     ; --------------------
     ; Count to 100, Clock = 10Hz
     LOAD    10Hz
-    OUT     Timer2
+    OUT     TIMER_FREQ
     CALL    COUNT
     ; --------------------
     ; Count to 100, Clock = 32Hz
     LOAD    32Hz
-    OUT     Timer2
+    OUT     TIMER_FREQ
     CALL    COUNT
     ; --------------------
     ; Count to 100, Clock = 100Hz
     LOAD    100Hz
-    OUT     Timer2
+    OUT     TIMER_FREQ
     CALL    COUNT
     ; --------------------
     ; Count to 100, Clock = 10kHz
     LOAD    10kHz
-    OUT     Timer2
+    OUT     TIMER_FREQ
     CALL    COUNT
     ; --------------------
     ; Count to 100, Clock = 100kHz
     LOAD    100kHz
-    OUT     Timer2
+    OUT     TIMER_FREQ
     CALL    COUNT
     ; --------------------
     ; Restart
 	JUMP    0
 
 COUNT:
-    IN      Timer2
+    IN      TIMER_FREQ
     OUT     Hex1
     SUB     HUNDRED
     JNEG    COUNT
@@ -56,12 +56,12 @@ COUNT:
 100kHz:     DW  5
 
 ; Values
-HUNDRED     DW  100
+HUNDRED:    DW  100
 
 ; IO address constants
 Switches:   EQU 000
 LEDs:       EQU 001
-Timer:      EQU 002
+TIMER_ACC:  EQU 002
+TIMER_FREQ: EQU 003
 Hex0:       EQU 004
 Hex1:       EQU 005
-Timer2:     EQU 006
