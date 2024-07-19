@@ -20,7 +20,7 @@ ENTITY TIMER_FREQ IS
     RESETN          : IN STD_LOGIC;
     CS              : IN STD_LOGIC;
     IO_WRITE        : IN STD_LOGIC;
-    IO_DATA         : IN STD_LOGIC_VECTOR(15 DOWNTO 0);
+    IO_DATA         : INOUT STD_LOGIC_VECTOR(15 DOWNTO 0);
     NEG_FREQ        : OUT STD_LOGIC;
     TIMER_CLOCK     : OUT STD_LOGIC
 );
@@ -40,6 +40,8 @@ ARCHITECTURE a OF TIMER_FREQ IS
     SIGNAL remain       : STD_LOGIC_VECTOR(15 DOWNTO 0);
     SIGNAL div_ready    : STD_LOGIC;
 
+    SIGNAL OUT_EN       : STD_LOGIC;
+
     COMPONENT lpm_divide
         GENERIC (
             lpm_widthd  : INTEGER := 24;
@@ -56,15 +58,15 @@ ARCHITECTURE a OF TIMER_FREQ IS
 BEGIN
 
     -- -- Use Intel LPM IP to create tristate drivers
-    -- IO_BUS: lpm_bustri
-    -- GENERIC MAP (
-    --     lpm_width => 16
-    -- )
-    -- PORT MAP (
-    --     data        => IO_COUNT,
-    --     enabledt    => OUT_EN,
-    --     tridata     => IO_DATA
-    -- );
+    IO_BUS: lpm_bustri
+    GENERIC MAP (
+        lpm_width => 16
+    )
+    PORT MAP (
+        data        => input_freq,
+        enabledt    => OUT_EN,
+        tridata     => IO_DATA
+    );
 
     -- Instantiate the lpm_divide component
     div_inst: lpm_divide
@@ -79,7 +81,7 @@ BEGIN
         remain      => remain
     );
 
-    -- OUT_EN <= (CS AND NOT(IO_WRITE));
+    OUT_EN <= (CS AND NOT(IO_WRITE));
 
     PROCESS (CLOCK_12MHz, RESETN)
     BEGIN
