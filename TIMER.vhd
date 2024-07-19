@@ -53,6 +53,8 @@ BEGIN
         ELSIF (rising_edge(CLOCK)) THEN
             IF (NEG_FREQ = '0') THEN
                 COUNT <= COUNT + 1;
+            ELSIF (COUNT = x"0000") THEN
+                COUNT <= COUNT;
             ELSE
                 COUNT <= COUNT - 1;
             END IF;
