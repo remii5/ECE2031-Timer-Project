@@ -8,12 +8,17 @@
 ; TIMER stores the counter and does the counting
 ;       ACC = Starting Value
 ; ----------------------------------------------------------
+; OUT TIMER : Sets Timer counter
+; IN TIMER : Gets Timer counter
+; OUT TIMER_FREQ : Sets Timer frequency (Hz)
+; IN TIMER_FREQ : Gets Timer frequency (Hz)
+; ----------------------------------------------------------
 ; Tests each clock frequencies and outputs to Hex Display
 ; Last updated on 7/18/2024
 
 ORG 0
 
-    ; Count up to 4, speed up, count to 8, speed up, count to 12
+    ; Count up to 4, slow down, count to 8, slow down, count to 12
     ; --------------------------
 
     LOADI   0
@@ -47,7 +52,7 @@ ORG 0
     LOADI   -8
     CALL    SET_FREQ_AND_COUNT_DOWN_BY_4
 
-    ; Count up to 4, slow down, count to 8, slow down, count to 12
+    ; Count up to 4, speed up, count to 8, speed up, count to 12
     ; --------------------------
     LOADI   0
     OUT     TIMER_FREQ
