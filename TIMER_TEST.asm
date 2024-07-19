@@ -12,6 +12,43 @@
 ; Last updated on 7/18/2024
 
 ORG 0
+
+    ; Count up to 4, speed up, count to 8, speed up, count to 12
+    ; --------------------------
+
+    LOADI   0
+    OUT     TIMER_FREQ
+    OUT     TIMER
+
+    LOADI   8
+    CALL    SET_FREQ_AND_COUNT_UP_BY_4
+
+    LOADI   4
+    CALL    SET_FREQ_AND_COUNT_UP_BY_4
+
+    LOADI   2
+    CALL    SET_FREQ_AND_COUNT_UP_BY_4
+
+    LOADI   1
+    CALL    SET_FREQ_AND_COUNT_UP_BY_4
+
+    ; Count down to 8, speed up, count down to 4, speed up, count down to 0
+    ; -------------------------
+
+    LOADI   -1
+    CALL    SET_FREQ_AND_COUNT_DOWN_BY_4
+
+    LOADI   -2
+    CALL    SET_FREQ_AND_COUNT_DOWN_BY_4
+
+    LOADI   -4
+    CALL    SET_FREQ_AND_COUNT_DOWN_BY_4
+
+    LOADI   -8
+    CALL    SET_FREQ_AND_COUNT_DOWN_BY_4
+
+    ; Count up to 4, slow down, count to 8, slow down, count to 12
+    ; --------------------------
     LOADI   0
     OUT     TIMER_FREQ
     OUT     TIMER
@@ -25,27 +62,44 @@ ORG 0
     LOADI   4
     CALL    SET_FREQ_AND_COUNT_UP_BY_4
 
+    LOADI   8
+    CALL    SET_FREQ_AND_COUNT_UP_BY_4
+
+    ; Count down to 8, slow down, count down to 4, slow down, count down to 0
     ; -------------------------
 
-    LOADI   -1
+    LOADI   -8
+    CALL    SET_FREQ_AND_COUNT_DOWN_BY_4
+
+    LOADI   -4
     CALL    SET_FREQ_AND_COUNT_DOWN_BY_4
 
     LOADI   -2
     CALL    SET_FREQ_AND_COUNT_DOWN_BY_4
 
-    LOADI   -4
+    LOADI   -1
     CALL    SET_FREQ_AND_COUNT_DOWN_BY_4
 
     ; --------------------------
 
     CALL    STOP_TIMER_AND_CHECK
 
-    LOADI   40
+    ; --------------------------
+    ; Rocketship count down then take off
+    LOADI   -1
     OUT     TIMER_FREQ
-    LOADI   100
-    STORE   COUNT
-    CALL    COUNT_FUNC_UP
+    LOADI   3
+    OUT     TIMER
+    OUT     COUNT
+    CALL    COUNT_DOWN
 
+    LOADI   50
+    OUT     TIMER_FREQ
+    LOADI   192
+    STORE   COUNT
+    CALL    COUNT_UP
+
+    ; Slow down considerably and count up by 4
     LOADI   1
     CALL    SET_FREQ_AND_COUNT_UP_BY_4
 
@@ -55,16 +109,18 @@ ORG 0
 
     ; -------------------------
 
+    ; Countinue and count up by 4
     LOADI   1
     CALL    SET_FREQ_AND_COUNT_UP_BY_4
 
     ; -------------------------
 
-    LOADI   -40
+    ; Crash down to 0, IN TIMER is always positive
+    LOADI   -100
     OUT     TIMER_FREQ
-    LOADI   200
+    LOADI   400
     STORE   COUNT
-    CALL    COUNT_FUNC_DOWN
+    CALL    COUNT_DOWN
 
     ; -------------------------
 
@@ -73,14 +129,16 @@ ORG 0
 
     ; -------------------------
 
-    LOADI   0
+    LOADI   255
     OUT     TIMER
+    IN      TIMER
+    OUT     Hex1
     CALL    STOP_TIMER_AND_CHECK
 	JUMP    0
 
     ; -------------------------
 
-COUNT_FUNC_UP:
+COUNT_UP:
     IN      TIMER
     STORE   INIT
 LOOP1:
@@ -91,7 +149,7 @@ LOOP1:
     JNEG    LOOP1
     RETURN
 
-COUNT_FUNC_DOWN:
+COUNT_DOWN:
     IN      TIMER
     STORE   INIT
 LOOP2:
@@ -118,14 +176,14 @@ SET_FREQ_AND_COUNT_UP_BY_4:
     OUT     TIMER_FREQ
     LOADI   4
     STORE   COUNT
-    CALL    COUNT_FUNC_UP
+    CALL    COUNT_UP
     RETURN
 
 SET_FREQ_AND_COUNT_DOWN_BY_4:
     OUT     TIMER_FREQ
     LOADI   4
     STORE   COUNT
-    CALL    COUNT_FUNC_DOWN
+    CALL    COUNT_DOWN
     RETURN
 
 ; Values
