@@ -14,7 +14,7 @@
 ; IN TIMER_FREQ : Gets Timer frequency (Hz)
 ; ----------------------------------------------------------
 ; Tests each clock frequencies and outputs to Hex Display
-; Last updated on 7/18/2024
+; Last updated on 7/20/2024
 
 ORG 0
 
@@ -54,9 +54,6 @@ ORG 0
 
     ; Count up to 4, speed up, count to 8, speed up, count to 12
     ; --------------------------
-    LOADI   0
-    OUT     TIMER_FREQ
-    OUT     TIMER
 
     LOADI   1
     CALL    SET_FREQ_AND_COUNT_UP_BY_4
@@ -95,7 +92,7 @@ ORG 0
     OUT     TIMER_FREQ
     LOADI   3
     OUT     TIMER
-    OUT     COUNT
+    STORE   COUNT
     CALL    COUNT_DOWN
 
     LOADI   50
@@ -191,13 +188,9 @@ SET_FREQ_AND_COUNT_DOWN_BY_4:
     CALL    COUNT_DOWN
     RETURN
 
-; Values
-LIMIT:      DW  10
+; Global Variables
 COUNT:      DW  0
 INIT:       DW  0
-
-SEVEN:       DW  7
-HUNDRED:    DW  100
 
 ; IO address constants
 Switches:   EQU 000
