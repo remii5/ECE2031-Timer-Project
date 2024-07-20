@@ -1,9 +1,18 @@
--- TIMER2.VHD (a peripheral for SCOMP)
--- 2024.07.08
+-- TIMER_FREQ.vhd (First part of two-part peripheral)
+-- Last updated on 7/20/2024
 --
--- This timer provides a 16 bit counter value with a resolution of the CLOCK period.
--- Writing any value to timer resets to 0x0000, but the timer continues to run.
--- The counter value rolls over to 0x0000 after a clock tick at 0xFFFF.
+-- This part of the timer takes in 12MHz as a clock (CLOCK_12MHz) then converts it to a user-defined frequency (TIMER_CLOCK) for the TIMER second-part peripheral.
+-- This also sends a NEG_FREQ signal to the TIMER portion, to signal whether to count in the forward or in the reverse direction.
+-- When RESETN is active, default freqency is 10 Hz
+
+-- TIMER_FREQ control the clock speed going to the clock
+-- On OUT instruction, ACC = Freq (Neg, Zero, Pos)
+--        If ACC = 0, then stop timer
+--        Else if ACC = POS, then count up
+--        Else if ACC = NEG, then count down
+
+-- OUT TIMER_FREQ : Sets Timer frequency (Hz)
+-- IN TIMER_FREQ : Gets Timer frequency (Hz)
 
 LIBRARY IEEE;
 LIBRARY LPM;
