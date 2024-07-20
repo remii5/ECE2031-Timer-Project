@@ -1,5 +1,17 @@
 # ECE 2031 Final Project
 
+### Recent Changes:
+
+- `SCOMP2.sof` is the .sof file that was tested on the DE10, and was shown to work, but there is a bug in the assembly code
+    - Line 95
+    - `OUT COUNT` instead of `STORE COUNT` was used on the rocketship countdown.
+    - `COUNT: DW 0`, so COUNT representeed an addresss whose value did't correspond to any IO Address, therefore no IO device effect was seen.
+    - The program seemingly operated as expected, since the `COUNT_DOWN` subroutine was programmed such that when counter = 0, then break out, as if COUNT = 3 even though COUNT = 4 at the time.
+- timer_project2.zip corresponds with SCOMP2.sof
+
+- SCOMP.sof is fixed .sof file, but untested since lab is closed.
+- timer_project.zip corresponds with SCOMP.sof
+
 ### Functionality added so far:
 
 1. TIMER peripheral
