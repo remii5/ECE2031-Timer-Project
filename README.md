@@ -12,7 +12,9 @@
 - `SCOMP.sof` is fixed .sof file, but untested since lab is closed.
     - `timer_project.zip` corresponds with SCOMP.sof
 
-### Functionality added so far:
+***
+
+### Timer Functionality Adder:
 
 1. TIMER peripheral
     - Stores current counter value
@@ -28,6 +30,8 @@
 
 The TIMER and TIMER_FREQ are currently in separate vhdl files, but it is possible to merge them together into a single vhdl file, and have two Chip Select inputs to differ between the two.
 The peripherals are separated for now for debugging simplicity.
+
+***
 
 ### Assembly Code Example:
 ```asm
@@ -95,6 +99,8 @@ TIMER_FREQ: EQU 003
 Hex0:       EQU 004
 Hex1:       EQU 005
 ```
+
+***
 
 ### Overall SCOMP_System BDF structure:
 
