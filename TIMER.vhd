@@ -1,9 +1,17 @@
--- TIMER2.VHD (a peripheral for SCOMP)
--- 2024.07.08
+-- TIMER.vhd (Second part of two-part peripheral)
+-- Last updated on 7/20/2024
 --
--- This timer provides a 16 bit counter value with a resolution of the CLOCK period.
--- Writing any value to timer resets to 0x0000, but the timer continues to run.
--- The counter value rolls over to 0x0000 after a clock tick at 0xFFFF.
+-- Behavior:
+--      TIMER stores the counter and does the counting
+--          On OUT instruction, counter = ACC
+--      If NEG_FREQ = 0, then count++
+--          counter is always non-negative and ranges from x0000 to x7FFF
+--          if counter = x7FFF, then counter = x0000
+--      Else if count = 0 or count < 0, then count = 0
+--      Else, then count--
+
+-- OUT TIMER : Sets Timer counter
+-- IN TIMER : Gets Timer counter
 
 LIBRARY IEEE;
 LIBRARY LPM;
@@ -53,8 +61,8 @@ BEGIN
         ELSIF (rising_edge(CLOCK)) THEN
             IF (NEG_FREQ = '0') THEN
                 COUNT <= COUNT + 1;
-            ELSIF (COUNT = x"0000") THEN
-                COUNT <= COUNT;
+            ELSIF (COUNT = x"0000" OR COUNT(15) = '1') THEN
+                COUNT <= x"0000";
             ELSE
                 COUNT <= COUNT - 1;
             END IF;

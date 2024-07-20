@@ -14,7 +14,7 @@
 ; IN TIMER_FREQ : Gets Timer frequency (Hz)
 ; ----------------------------------------------------------
 ; Tests each clock frequencies and outputs to Hex Display
-; Last updated on 7/20/2024
+; Last updated on 7/18/2024
 
 ORG 0
 
