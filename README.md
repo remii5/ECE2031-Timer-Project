@@ -19,6 +19,22 @@ The peripherals are separated for now for debugging simplicity.
 
 ### Assembly Code Example:
 ```asm
+; TIMER_TEST.asm
+; ----------------------------------------------------------
+; TIMER_FREQ control the clock speed going to the clock
+;       ACC = Freq (Neg, Zero, Pos)
+;       If ACC = 0, then stop timer
+;       Else if ACC = POS, then count up
+;       Else if ACC = NEG, then count down
+; TIMER stores the counter and does the counting
+;       ACC = Starting Value
+; ----------------------------------------------------------
+; OUT TIMER : Sets Timer counter
+; IN TIMER : Gets Timer counter
+; OUT TIMER_FREQ : Sets Timer frequency (Hz)
+; IN TIMER_FREQ : Gets Timer frequency (Hz)
+; ----------------------------------------------------------
+
 ORG 0
     ; Stop timer and set counter = 0
     LOADI   0
