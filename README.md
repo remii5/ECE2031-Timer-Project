@@ -14,7 +14,7 @@
 
 ***
 
-### Timer Functionality Adder:
+### Timer Functionality Added:
 
 1. TIMER peripheral
     - Stores current counter value
